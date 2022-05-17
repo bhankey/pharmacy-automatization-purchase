@@ -68,6 +68,7 @@ func (m *ReserveItemRequest) validate(all bool) error {
 	if len(errors) > 0 {
 		return ReserveItemRequestMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -175,6 +176,7 @@ func (m *GetReservationRequest) validate(all bool) error {
 	if len(errors) > 0 {
 		return GetReservationRequestMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -251,6 +253,116 @@ var _ interface {
 	ErrorName() string
 } = GetReservationRequestValidationError{}
 
+// Validate checks the field values on BuyReservationRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *BuyReservationRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BuyReservationRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BuyReservationRequestMultiError, or nil if none found.
+func (m *BuyReservationRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BuyReservationRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for PharmacyId
+
+	// no validation rules for PurchaseUuid
+
+	// no validation rules for IsSocialCard
+
+	if len(errors) > 0 {
+		return BuyReservationRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// BuyReservationRequestMultiError is an error wrapping multiple validation
+// errors returned by BuyReservationRequest.ValidateAll() if the designated
+// constraints aren't met.
+type BuyReservationRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BuyReservationRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BuyReservationRequestMultiError) AllErrors() []error { return m }
+
+// BuyReservationRequestValidationError is the validation error returned by
+// BuyReservationRequest.Validate if the designated constraints aren't met.
+type BuyReservationRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BuyReservationRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BuyReservationRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BuyReservationRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BuyReservationRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BuyReservationRequestValidationError) ErrorName() string {
+	return "BuyReservationRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BuyReservationRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBuyReservationRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BuyReservationRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BuyReservationRequestValidationError{}
+
 // Validate checks the field values on Reservation with the rules defined in
 // the proto definition for this message. If any rules are violated, the first
 // error encountered is returned, or nil if there are no violations.
@@ -312,6 +424,7 @@ func (m *Reservation) validate(all bool) error {
 	if len(errors) > 0 {
 		return ReservationMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -416,6 +529,7 @@ func (m *ReservationProductInfo) validate(all bool) error {
 	if len(errors) > 0 {
 		return ReservationProductInfoMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -539,6 +653,7 @@ func (m *PaginationRequest) validate(all bool) error {
 	if len(errors) > 0 {
 		return PaginationRequestMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -642,6 +757,7 @@ func (m *PharmacyID) validate(all bool) error {
 	if len(errors) > 0 {
 		return PharmacyIDMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -774,6 +890,7 @@ func (m *Products) validate(all bool) error {
 	if len(errors) > 0 {
 		return ProductsMultiError(errors)
 	}
+
 	return nil
 }
 
@@ -881,6 +998,7 @@ func (m *Product) validate(all bool) error {
 	if len(errors) > 0 {
 		return ProductMultiError(errors)
 	}
+
 	return nil
 }
 

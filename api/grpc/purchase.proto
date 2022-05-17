@@ -6,7 +6,6 @@ option go_package = "api/purchaseproto";
 import "validate/validate.proto";
 import "google/protobuf/empty.proto";
 
-
 // For error handling use "google.golang.org/grpc/status"
 message ReserveItemRequest {
   int64 pharmacy_id = 1;
@@ -19,6 +18,13 @@ message GetReservationRequest {
   int64 pharmacy_id = 1;
   string purchase_uuid = 2;
   bool is_social_card = 3;
+}
+
+message BuyReservationRequest {
+  int64 user_id = 1;
+  int64 pharmacy_id = 2;
+  string purchase_uuid = 3;
+  bool is_social_card = 4;
 }
 
 message Reservation {
@@ -49,13 +55,14 @@ message Product {
   string name = 1;
   int64 price = 2;
   int64 count = 3;
-  int64  position = 4;
+  string  position = 4;
   bool need_prescription_for_medicine = 5;
 }
 
 service PurchaseService {
   rpc ReserveItem(ReserveItemRequest) returns (google.protobuf.Empty);
+  rpc CancelReserveItem(ReserveItemRequest) returns (google.protobuf.Empty);
   rpc GetReservation(GetReservationRequest) returns (Reservation);
-  rpc BuyReservation(GetReservationRequest) returns (google.protobuf.Empty);
+  rpc BuyReservation(BuyReservationRequest) returns (google.protobuf.Empty);
   rpc GetAvailableProductsToReservation(PharmacyID) returns (Products);
 }

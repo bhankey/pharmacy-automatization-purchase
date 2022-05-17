@@ -3,6 +3,7 @@ package container
 import (
 	"github.com/bhankey/pharmacy-automatization-purchase/internal/adapter/repository/productrepo"
 	"github.com/bhankey/pharmacy-automatization-purchase/internal/adapter/repository/receiptrepo"
+	purchase "github.com/bhankey/pharmacy-automatization-purchase/internal/delivery/grpc/v1/products"
 	"github.com/bhankey/pharmacy-automatization-purchase/internal/service/purchaseservice"
 )
 

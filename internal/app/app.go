@@ -3,7 +3,6 @@ package app
 import (
 	"context"
 	"fmt"
-	"github.com/bhankey/pharmacy-automatization-purchase/pkg/api/purchaseproto"
 	"net"
 	"os"
 	"os/signal"
@@ -14,6 +13,7 @@ import (
 	"github.com/bhankey/go-utils/pkg/logger"
 	"github.com/bhankey/pharmacy-automatization-purchase/internal/app/container"
 	configinternal "github.com/bhankey/pharmacy-automatization-purchase/internal/config"
+	"github.com/bhankey/pharmacy-automatization-purchase/pkg/api/purchaseproto"
 	middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -67,7 +67,7 @@ func NewApp(configPath string) (*App, error) {
 
 	reflection.Register(grpcServer)
 
-	purchaseproto.RegisterPharmacyServiceServer(grpcServer, grpcHandler)
+	purchaseproto.RegisterPurchaseServiceServer(grpcServer, grpcHandler)
 
 	listener, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%s", config.Server.Port))
 	if err != nil {
